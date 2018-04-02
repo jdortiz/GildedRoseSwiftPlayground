@@ -57,6 +57,19 @@ public class GildedRose {
             case "Sulfuras, Hand of Ragnaros":
                 break
 
+            case "Backstage passes to a TAFKAL80ETC concert":
+                items[i] = items[i].changeSellIn(increment: -1)
+                switch items[i].sellIn {
+                case 10..<Int.max:
+                    items[i] = items[i].changeQuality(increment: +1).limitQualityTo(max: 50)
+                case 5..<10:
+                    items[i] = items[i].changeQuality(increment: +2).limitQualityTo(max: 50)
+                case 0..<5:
+                    items[i] = items[i].changeQuality(increment: +3).limitQualityTo(max: 50)
+                default: // case Int.min..<0:
+                    items[i] = items[i].limitQualityTo(max: 0)
+                }
+
             default:
 
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
