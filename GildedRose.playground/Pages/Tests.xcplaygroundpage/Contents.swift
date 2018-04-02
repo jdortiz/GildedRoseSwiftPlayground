@@ -13,42 +13,39 @@ class GildedRoseTests: XCTestCase {
 //: Your tests go here.
 
     func testSellInDecreasesOneUnit() {
-        // Arrange
-        let items = [ Item(name: "Normal", sellIn: 10, quality: 15) ]
-        let sut = GildedRose(items: items)
-
-        // Act
-        sut.updateQuality()
-
-        // Assert
-        XCTAssertEqual(9, sut.items[0].sellIn)
+        sellInTestHelper(name: "Normal", initialSellIn: 10, initialQuality: 15, expectedSellIn: 9)
     }
 
     func testQualityDecreasesOneUnit() {
-        let items = [ Item(name: "Normal", sellIn: 10, quality: 15) ]
-        let sut = GildedRose(items: items)
-
-        sut.updateQuality()
-
-        XCTAssertEqual(14, sut.items[0].quality)
+        qualityTestHelper(name: "Normal", initialSellIn: 10, initialQuality: 15, expectedQuality: 14)
     }
 
     func testQualityDecreasesTwoUnitsAfterSellInDate() {
-        let items = [ Item(name: "Normal", sellIn: 0, quality: 15) ]
-        let sut = GildedRose(items: items)
-
-        sut.updateQuality()
-
-        XCTAssertEqual(13, sut.items[0].quality)
+        qualityTestHelper(name: "Normal", initialSellIn: 0, initialQuality: 15, expectedQuality: 13)
     }
 
     func testQualityIsNeverNegative() {
-        let items = [ Item(name: "Normal", sellIn: 10, quality: 0) ]
+        qualityTestHelper(name: "Normal", initialSellIn: 10, initialQuality: 0, expectedQuality: 0)
+    }
+
+    private func sellInTestHelper(name: String, initialSellIn: Int, initialQuality: Int,
+                                  expectedSellIn: Int, line: UInt = #line) {
+        let items = [ Item(name: name, sellIn: initialSellIn, quality: initialQuality) ]
         let sut = GildedRose(items: items)
 
         sut.updateQuality()
 
-        XCTAssertEqual(0, sut.items[0].quality)
+        XCTAssertEqual(expectedSellIn, sut.items[0].sellIn, line: line)
+    }
+
+    private func qualityTestHelper(name: String, initialSellIn: Int, initialQuality: Int,
+                                  expectedQuality: Int, line: UInt = #line) {
+        let items = [ Item(name: name, sellIn: initialSellIn, quality: initialQuality) ]
+        let sut = GildedRose(items: items)
+
+        sut.updateQuality()
+
+        XCTAssertEqual(expectedQuality, sut.items[0].quality)
     }
 }
 
