@@ -10,6 +10,21 @@ public class GildedRose {
 
     public func updateQuality() {
         for i in 0..<items.count {
+
+            switch items[i].name {
+            case "Normal":
+                items[i].sellIn -= 1
+                if items[i].sellIn >= 0 {
+                    items[i].quality -= 1
+                } else {
+                    items[i].quality -= 2
+                }
+                if items[i].quality < 0 {
+                    items[i].quality = 0
+                }
+
+            default:
+
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
                 if (items[i].quality > 0) {
                     if (items[i].name != "Sulfuras, Hand of Ragnaros") {
@@ -56,6 +71,7 @@ public class GildedRose {
                         items[i].quality = items[i].quality + 1
                     }
                 }
+            }
             }
         }
     }
