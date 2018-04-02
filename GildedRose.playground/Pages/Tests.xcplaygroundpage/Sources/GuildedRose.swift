@@ -54,6 +54,9 @@ public class GildedRose {
                     items[i] = items[i].changeQuality(increment: +1).limitQualityTo(max: 50)
                 }
 
+            case "Sulfuras, Hand of Ragnaros":
+                break
+
             default:
 
             if (items[i].name != "Aged Brie" && items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
