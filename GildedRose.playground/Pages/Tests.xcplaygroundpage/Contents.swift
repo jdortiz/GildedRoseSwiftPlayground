@@ -12,6 +12,44 @@ class GildedRoseTests: XCTestCase {
 
 //: Your tests go here.
 
+    func testSellInDecreasesOneUnit() {
+        // Arrange
+        let items = [ Item(name: "Normal", sellIn: 10, quality: 15) ]
+        let sut = GildedRose(items: items)
+
+        // Act
+        sut.updateQuality()
+
+        // Assert
+        XCTAssertEqual(9, sut.items[0].sellIn)
+    }
+
+    func testQualityDecreasesOneUnit() {
+        let items = [ Item(name: "Normal", sellIn: 10, quality: 15) ]
+        let sut = GildedRose(items: items)
+
+        sut.updateQuality()
+
+        XCTAssertEqual(14, sut.items[0].quality)
+    }
+
+    func testQualityDecreasesTwoUnitsAfterSellInDate() {
+        let items = [ Item(name: "Normal", sellIn: 0, quality: 15) ]
+        let sut = GildedRose(items: items)
+
+        sut.updateQuality()
+
+        XCTAssertEqual(13, sut.items[0].quality)
+    }
+
+    func testQualityIsNeverNegative() {
+        let items = [ Item(name: "Normal", sellIn: 10, quality: 0) ]
+        let sut = GildedRose(items: items)
+
+        sut.updateQuality()
+
+        XCTAssertEqual(0, sut.items[0].quality)
+    }
 }
 
 /*:
