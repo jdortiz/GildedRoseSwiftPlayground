@@ -1,2 +1,5 @@
 # Ignore emacs backup files
 *~
+# Xcode files
+xcuserdata
+*.xcuserstate

@@ -28,6 +28,68 @@ class GildedRoseTests: XCTestCase {
         qualityTestHelper(name: "Normal", initialSellIn: 10, initialQuality: 0, expectedQuality: 0)
     }
 
+    func testAgedBrieSellInDecreasesOneUnit() {
+        sellInTestHelper(name: "Aged Brie", initialSellIn: 5, initialQuality: 10, expectedSellIn: 4)
+    }
+
+    func testAgedBrieQualityIncreasesOneUnit() {
+        qualityTestHelper(name: "Aged Brie", initialSellIn: 5, initialQuality: 10, expectedQuality: 11)
+    }
+
+    func testAgedBrieQualityIncreasesTwoUnitsAfterSellDate() {
+        qualityTestHelper(name: "Aged Brie", initialSellIn: 0, initialQuality: 10, expectedQuality: 12)
+    }
+
+    func testAgedBrieQualityIsNeverMoreThanFifty() {
+        qualityTestHelper(name: "Aged Brie", initialSellIn: 5, initialQuality: 50, expectedQuality: 50)
+    }
+
+    func testSulfurasNeverHasToBeSold() {
+        sellInTestHelper(name: "Sulfuras, Hand of Ragnaros", initialSellIn: 0, initialQuality: 80, expectedSellIn: 0)
+    }
+
+    func testSulfurasQualityNeverDecreases() {
+        qualityTestHelper(name: "Sulfuras, Hand of Ragnaros", initialSellIn: 0, initialQuality: 80, expectedQuality: 80)
+    }
+
+    func testBackstageSellInDecreasesOneUnit() {
+        sellInTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 6, initialQuality: 10, expectedSellIn: 5)
+    }
+
+    func testBackstagePassesQualityIncreasesOneUnitIfSellInMoreThanTen() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 11, initialQuality: 20, expectedQuality: 21)
+    }
+
+    func testBackstagePassesQualityIncreasesTwoUnitsIfSellInLessThanEleven() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 10, initialQuality: 20, expectedQuality: 22)
+    }
+
+    func testBackstagePassesQualityIncreasesTwoUnitsIfSellInMoreThanFive() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 6, initialQuality: 20, expectedQuality: 22)
+    }
+
+    func testBackstagePassesQualityIncreasesThreeUnitsIfSellInLessThanSix() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 5, initialQuality: 20, expectedQuality: 23)
+    }
+
+    func testBackstagePassesQualityIsZeroAfterSellDate() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 0, initialQuality: 20, expectedQuality: 0)
+    }
+
+    func testBackstagePassesQualityIsNeverMoreThanFiftyWhenIncreasingOne() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 11, initialQuality: 50, expectedQuality: 50)
+    }
+
+    func testBackstagePassesQualityIsNeverMoreThanFiftyWhenIncreasingTwo() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 7, initialQuality: 49, expectedQuality: 50)
+    }
+
+    func testBackstagePassesQualityIsNeverMoreThanFiftyWhenIncreasingThree() {
+        qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 1, initialQuality: 49, expectedQuality: 50)
+    }
+
+    // Auxiliary functions
+
     private func sellInTestHelper(name: String, initialSellIn: Int, initialQuality: Int,
                                   expectedSellIn: Int, line: UInt = #line) {
         let items = [ Item(name: name, sellIn: initialSellIn, quality: initialQuality) ]
