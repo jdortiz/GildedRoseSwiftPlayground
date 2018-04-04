@@ -43,7 +43,7 @@ public class GildedRose {
                 items[i] = AgedBrieItem(item: items[i]).update()
 
             case "Sulfuras, Hand of Ragnaros":
-                break
+                items[i] = SulfurasItem(item: items[i]).update()
 
             case "Backstage passes to a TAFKAL80ETC concert":
                 items[i] = BackstagePassItem(item: items[i]).update()
