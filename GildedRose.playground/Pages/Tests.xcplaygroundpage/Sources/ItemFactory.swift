@@ -13,6 +13,9 @@ public class ItemFactory {
         case "Backstage passes to a TAFKAL80ETC concert":
             return BackstagePassItem(item: item)
 
+        case "Conjured":
+            return ConjuredItem(item: item)
+
         default:
             return NormalItem(item: item)
         }

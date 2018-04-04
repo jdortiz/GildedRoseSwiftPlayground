@@ -86,13 +86,22 @@ class GildedRoseTests: XCTestCase {
         qualityTestHelper(name: "Backstage passes to a TAFKAL80ETC concert", initialSellIn: 1, initialQuality: 49, expectedQuality: 50)
     }
 
-    func SkiptestConjuredSellInDecreasesOneUnit() {
+    func testConjuredSellInDecreasesOneUnit() {
         sellInTestHelper(name: "Conjured", initialSellIn: 8, initialQuality: 12, expectedSellIn: 7)
     }
 
-    func SkiptestConjuredQualityDecreasesTwoUnits() {
+    func testConjuredQualityDecreasesTwoUnits() {
         qualityTestHelper(name: "Conjured", initialSellIn: 8, initialQuality: 12, expectedQuality: 10)
     }
+
+    func testConjuredQualityDecreasesFourUnitsAfterSellInDate() {
+        qualityTestHelper(name: "Conjured", initialSellIn: 0, initialQuality: 12, expectedQuality: 8)
+    }
+
+    func testConjuredQualityIsNeverNegative() {
+        qualityTestHelper(name: "Conjured", initialSellIn: 10, initialQuality: 0, expectedQuality: 0)
+    }
+
 
     // Auxiliary functions
 
