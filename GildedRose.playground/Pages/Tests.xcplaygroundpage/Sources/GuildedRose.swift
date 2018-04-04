@@ -64,12 +64,7 @@ public class GildedRose {
                 }
 
             default:
-                items[i] = items[i].changeSellIn(increment: -1)
-                if items[i].sellIn >= 0 {
-                    items[i] = items[i].changeQuality(increment: -1).limitQualityTo(min: 0)
-                } else {
-                    items[i] = items[i].changeQuality(increment: -2).limitQualityTo(min: 0)
-                }
+                items[i] = NormalItem(item: items[i]).update()
             }
         }
     }
