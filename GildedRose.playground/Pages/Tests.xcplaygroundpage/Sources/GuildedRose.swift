@@ -35,22 +35,9 @@ public class GildedRose {
     }
 
     public func updateQuality() {
+        let factory = ItemFactory()
         for i in 0..<items.count {
-
-            switch items[i].name {
-
-            case "Aged Brie":
-                items[i] = AgedBrieItem(item: items[i]).update()
-
-            case "Sulfuras, Hand of Ragnaros":
-                items[i] = SulfurasItem(item: items[i]).update()
-
-            case "Backstage passes to a TAFKAL80ETC concert":
-                items[i] = BackstagePassItem(item: items[i]).update()
-
-            default:
-                items[i] = NormalItem(item: items[i]).update()
-            }
+            items[i] = factory.createUpdatableItem(item: items[i]).update()
         }
     }
 }

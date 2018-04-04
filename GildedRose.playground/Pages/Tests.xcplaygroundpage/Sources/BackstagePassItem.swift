@@ -5,7 +5,9 @@ public struct BackstagePassItem {
     public init(item: Item) {
         self.item = item
     }
+}
 
+extension BackstagePassItem: UpdatableItem {
     public func update() -> Item {
         var updatedItem = item.changeSellIn(increment: -1)
         switch updatedItem.sellIn {

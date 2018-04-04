@@ -5,7 +5,9 @@ public struct AgedBrieItem {
     public init(item: Item) {
         self.item = item
     }
+}
 
+extension AgedBrieItem: UpdatableItem {
     public func update() -> Item {
         var updatedItem = item.changeSellIn(increment: -1)
         if updatedItem.sellIn < 0 {
