@@ -40,12 +40,7 @@ public class GildedRose {
             switch items[i].name {
 
             case "Aged Brie":
-                items[i] = items[i].changeSellIn(increment: -1)
-                if items[i].sellIn < 0 {
-                    items[i] = items[i].changeQuality(increment: +2).limitQualityTo(max: 50)
-                } else {
-                    items[i] = items[i].changeQuality(increment: +1).limitQualityTo(max: 50)
-                }
+                items[i] = AgedBrieItem(item: items[i]).update()
 
             case "Sulfuras, Hand of Ragnaros":
                 break
